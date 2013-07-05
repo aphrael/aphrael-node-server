@@ -1,0 +1,28 @@
+{
+  "name": "aphrael-node-server",
+  "version": "0.0.1",
+  "description": "aphrael server",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/aphrael/aphrael-node-server.git"
+  },
+  "keywords": [
+    "node.js",
+    "websocket"
+  ],
+  "author": "Ryuichi TANAKA (mapserver2007)",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "gitHead": "b9243093d016a248ee6dc359de8e9527a857037b",
+  "bugs": {
+    "url": "https://github.com/aphrael/aphrael-node-server/issues"
+  },
+  "dependencies": {
+    "ws": "*"
+  }
+}
