@@ -23,6 +23,8 @@
     "url": "https://github.com/aphrael/aphrael-node-server/issues"
   },
   "dependencies": {
-    "ws": "*"
+    "ws": "latest",
+    "express": "latest",
+    "express-resource": "latest"
   }
 }
