@@ -15,15 +15,16 @@ var server = new WebSocketServer({
     server: httpServer
 });
 
-var connections = [];
+// TODO
+// サーバを再起動したとき、クライアントにどうやって通知するか。
+// 現状だとサーバを落とす→サーバ再起動→notify_nodeを実行しても接続が変わっている
+// から通信できない。エラー検知もできていない。
+
+var connection = null;
 server.on('connection', function(ws) {
-    connections.push(ws); // コネクションプーリング
+    connection = ws;
     ws.on('close', function(code) {
         console.log("connecton closed: CODE [" + code + "]");
-        // WebSocketの接続が切れたものはプールから除外
-        connections = connections.filter(function(conn) {
-            return conn === ws ? false : true;
-        });
     });
 });
 
@@ -37,10 +38,7 @@ app.get('/rest/position', function(req, res) {
         lat: req.query.lat,
         lng: req.query.lng
     };
-    connections.forEach(function(conn) {
-        conn.send(JSON.stringify(data));
-    });
-
+    connection.send(JSON.stringify(data));
     res.send(200);
 });
 app.listen("9223");
