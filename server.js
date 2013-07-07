@@ -8,6 +8,11 @@
  * Copyright 2013, Ryuichi TANAKA [mapserver2007@gmail.com]
  */
 
+// Logger
+var log4js = require('log4js');
+log4js.configure('./log4js.json');
+var logger = log4js.getLogger('dataFile');
+
 // WebSocket
 var WebSocketServer = require('ws').Server,
     httpServer = require('http').createServer();
@@ -15,16 +20,11 @@ var server = new WebSocketServer({
     server: httpServer
 });
 
-// TODO
-// サーバを再起動したとき、クライアントにどうやって通知するか。
-// 現状だとサーバを落とす→サーバ再起動→notify_nodeを実行しても接続が変わっている
-// から通信できない。エラー検知もできていない。
-
 var connection = null;
 server.on('connection', function(ws) {
     connection = ws;
     ws.on('close', function(code) {
-        console.log("connecton closed: CODE [" + code + "]");
+        logger.info("connecton closed: CODE [" + code + "]");
     });
 });
 
@@ -38,7 +38,14 @@ app.get('/rest/position', function(req, res) {
         lat: req.query.lat,
         lng: req.query.lng
     };
-    connection.send(JSON.stringify(data));
-    res.send(200);
+    try {
+        connection.send(JSON.stringify(data));
+        res.send(200);
+    }
+    catch (e) {
+        logger.error(e.message);
+        throw e;
+    }
+
 });
 app.listen("9223");

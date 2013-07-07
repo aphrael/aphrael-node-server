@@ -25,6 +25,6 @@
   "dependencies": {
     "ws": "latest",
     "express": "latest",
-    "express-resource": "latest"
+    "log4js": "latest"
   }
 }
