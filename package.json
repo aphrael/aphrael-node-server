@@ -26,5 +26,9 @@
     "ws": "latest",
     "express": "latest",
     "log4js": "latest"
+  },
+  "engines": {
+    "node": "0.11.x",
+    "npm": "1.2.x"
   }
 }
