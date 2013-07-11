@@ -28,7 +28,7 @@
     "log4js": "latest"
   },
   "engines": {
-    "node": "0.10.x", // 0.11.x does not avairable
+    "node": "0.10.x",
     "npm": "1.2.x"
   }
 }
