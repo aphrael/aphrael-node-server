@@ -4,7 +4,7 @@ task :github_push do
 end
 
 task :heroku_deploy => [:github_push] do
-  sh 'git push heroku feature'
+  sh 'git push heroku feature:master'
 end
 
 task :heroku_create do
